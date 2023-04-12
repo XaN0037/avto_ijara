@@ -1,6 +1,7 @@
 from aiogram import Bot, Dispatcher, executor, types
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 from bot import bot, BUTTONS
+from controllers.back import backs
 from controllers.cars import handle_cars
 from controllers.lessee import handle_lessee
 from helper import get_user, update_user_steep
@@ -37,7 +38,13 @@ async def start(message: types.Message):
 @dp.message_handler()
 async def echo(message: types.Message):
     user = get_user(message)
+
+
     steep = user['steep'].split('.')[0]
+    #
+    if message.text == BUTTONS['back']:
+        await backs(message)
+
     if steep == 'start':
         if message.text == BUTTONS['cars']:
             update_user_steep(user['tg_id'], 'cars.menu')
@@ -80,9 +87,6 @@ async def echo(message: types.Message):
 
             resize_keyboard=True)
         await message.answer('bu ijarachilar', reply_markup=menu)
-    if steep == "cars.menu":
-        if message.text == BUTTONS['back']:
-            print('orqagaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
     elif steep == 'lessee':
         await handle_lessee(message)
 

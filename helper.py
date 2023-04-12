@@ -1,10 +1,10 @@
 import psycopg2
 from contextlib import closing
 
-dbname = 'daeg59ggrk3fjm'
-user = 'xuipcmzmosgoer'
-password = 'e0e130e9f4034c69a9d7d892cbd6d069f33fd075bb237d30c9f403a003a92e6b'
-host = 'ec2-34-226-11-94.compute-1.amazonaws.com'
+dbname = 'dcf1cvp3oldnfg'
+user = 'yrbjjwyztiwdvp'
+password = '439b0dd54285d0a2671c2a19511faba82a6f22cc6d05c9c28baf5be61f415576'
+host = 'ec2-44-214-132-149.compute-1.amazonaws.com'
 
 conn = psycopg2.connect(dbname=dbname, user=user, password=password, host=host)
 
