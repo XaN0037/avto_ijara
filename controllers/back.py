@@ -26,4 +26,4 @@ async def backs(message: types.Message):
                 ]
             ],
             resize_keyboard=True)
-        await message.answer('bu start', reply_markup=menu)
+        await message.answer('bu back', reply_markup=menu)

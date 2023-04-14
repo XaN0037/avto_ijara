@@ -26,6 +26,14 @@ def dictfetchone(cursor):
     return dict(zip(columns, row))
 
 
+def get_all_cars():
+    sql = "select * from dashboard_cars order by id"
+    with closing(conn.cursor()) as cursor:
+        cursor.execute(sql)
+        result = dictfetchall(cursor)
+    return result
+
+
 def get_user(msg):
     tg_id = msg.from_user.id
     tg_id = str(tg_id)
