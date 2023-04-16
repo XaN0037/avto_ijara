@@ -28,6 +28,7 @@ def dictfetchone(cursor):
 
 def get_all_cars():
     sql = "select * from dashboard_cars order by id"
+    print(sql)
     with closing(conn.cursor()) as cursor:
         cursor.execute(sql)
         result = dictfetchall(cursor)

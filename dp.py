@@ -61,12 +61,8 @@ async def echo(message: types.Message):
                 keyboard=[
                     [
                         KeyboardButton(text=BUTTONS['get']),
-                        KeyboardButton(text=BUTTONS['add'])
                     ],
-                    [
-                        KeyboardButton(text=BUTTONS["put"]),
-                        KeyboardButton(text=BUTTONS['delete'])
-                    ],
+
                     [
                         KeyboardButton(text=BUTTONS["back"])
                     ]
