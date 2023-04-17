@@ -1,7 +1,8 @@
 import logging
-from aiogram import Bot, Dispatcher, executor, types
+from aiogram import Bot, Dispatcher
+from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 
-API_TOKEN = "6249005024:AAGq4egYnEVL_xepsM-vqXuIMQ8RCahN1K4"
+API_TOKEN = "5607317884:AAHcYvO01aYakhdQdlC87GQ72UdUEGmQrgI"
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -26,6 +27,18 @@ BUTTONS = {
     "back": "Back",
     "next": "Next"
 }
+
+menu = ReplyKeyboardMarkup(
+        keyboard=[
+            [
+                KeyboardButton(text=BUTTONS['cars'])
+            ],
+            [
+                KeyboardButton(text=BUTTONS['lessee'])
+            ]
+        ],
+        resize_keyboard=True)
+
 
 from helper import *
 from controllers.cars import handle_cars

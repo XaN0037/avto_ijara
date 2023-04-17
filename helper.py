@@ -28,7 +28,6 @@ def dictfetchone(cursor):
 
 def get_all_cars():
     sql = "select * from dashboard_cars order by id"
-    print(sql)
     with closing(conn.cursor()) as cursor:
         cursor.execute(sql)
         result = dictfetchall(cursor)
@@ -46,9 +45,9 @@ def get_user(msg):
 
     if not result:
         with closing(conn.cursor()) as cursor:
-            sql = f"insert into public.dashboard_botuser (tg_id,first_name,last_name,user_name,is_bot) values (%s,%s,%s,%s,%s)"
+            sql = f"insert into public.dashboard_botuser (tg_id,first_name,last_name,user_name,is_bot,inline_page) values (%s,%s,%s,%s,%s,%s)"
             cursor.execute(sql, (
-            tg_id, msg.from_user.first_name, msg.from_user.last_name, msg.from_user.username, msg.from_user.is_bot))
+            tg_id, msg.from_user.first_name, msg.from_user.last_name, msg.from_user.username, msg.from_user.is_bot, 1))
             conn.commit()
             cursor.execute(f"SELECT * from public.dashboard_botuser where tg_id=%s", (tg_id,))
             result = dictfetchone(cursor)
@@ -60,6 +59,14 @@ def get_user(msg):
 def update_user_steep(tg_id, steep):
     with closing(conn.cursor()) as cursor:
         cursor.execute(f"UPDATE public.dashboard_botuser SET steep = %s  WHERE tg_id=%s", (steep, tg_id))
+        conn.commit()
+        cursor.close()
+        pass
+
+
+def update_inline_page(tg_id, inline_page):
+    with closing(conn.cursor()) as cursor:
+        cursor.execute(f"UPDATE public.dashboard_botuser SET inline_page=%s  WHERE tg_id=%s", (inline_page, tg_id))
         conn.commit()
         cursor.close()
         pass
